@@ -21,5 +21,5 @@
 // 计算网络图片尺寸大小
 +(CGSize)downloadImageSizeWithURL:(id)imageURL;
 // 给个size返回一个一样大小的图片
-+ (UIImage *)getPlaceholdImage:(CGSize)sz;
++ (UIImage *)getPlaceholdImage:(CGSize)tempSize;
 @end

@@ -166,22 +166,20 @@
         }
     }
 }
-+ (UIImage *)getPlaceholdImage:(CGSize)sz
++ (UIImage *)getPlaceholdImage:(CGSize)tempSize
 {
     UIImage *image = [UIImage imageNamed:@"placeholdImage.png"];
-    //    CGSize sz = [image size];
-    CGImageRef imageLeft = CGImageCreateWithImageInRect([image CGImage], CGRectMake(0, 0, sz.width/2, sz.height));//获取图片左侧部分
-    CGImageRef imageRight = CGImageCreateWithImageInRect([image CGImage], CGRectMake(sz.width/2, 0, sz.width/2, sz.height));//获取图片右侧部分
-    UIGraphicsBeginImageContext(CGSizeMake(sz.width, sz.height));//指定要绘画图片的大小
+    CGImageRef imageLeft = CGImageCreateWithImageInRect([image CGImage], CGRectMake(0, 0, tempSize.width/2, tempSize.height));
+    CGImageRef imageRight = CGImageCreateWithImageInRect([image CGImage], CGRectMake(tempSize.width/2, 0, tempSize.width/2, tempSize.height));
+    UIGraphicsBeginImageContext(CGSizeMake(tempSize.width, tempSize.height));
     CGContextRef con = UIGraphicsGetCurrentContext();
-    //绘制图片
-    CGContextDrawImage(con, CGRectMake(0, 0, sz.width/2, sz.height), imageLeft);
-    CGContextDrawImage(con, CGRectMake(sz.width, 0, sz.width/2, sz.height), imageRight);
-    UIImage *im = UIGraphicsGetImageFromCurrentImageContext();
+    CGContextDrawImage(con, CGRectMake(0, 0, tempSize.width/2, tempSize.height), imageLeft);
+    CGContextDrawImage(con, CGRectMake(tempSize.width, 0, tempSize.width/2, tempSize.height), imageRight);
+    UIImage *imagei = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     CGImageRelease(imageLeft);
     CGImageRelease(imageRight);
-    return im;
+    return imagei;
 }
 
 
